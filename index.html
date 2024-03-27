@@ -109,6 +109,10 @@
             }
         }
 
+        function Insert (string, index, letter) {
+            return string.slice(0, index) + letter + string.slice(index);
+        }
+
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -255,8 +259,8 @@
                 for (let i = 1; i < entries.length; i++) {
                     const title = entries[i].split("<title>")[1].split("</title>")[0];
                     const abstract = entries[i].split("<summary>")[1].split("</summary>")[0];
-                    const link = entries[i].split("<link")[1].split("/>")[0].split("href=")[1].split(" ")[0];
-                    const pdf = entries[i].split("<link title")[1].split("/>")[0].split("href=")[1].split(" ")[0];
+                    const link = Insert((entries[i].split("<link")[1].split("/>")[0].split("href=")[1].split(" ")[0]).slice(1, -1),4,'s');
+                    const pdf = Insert((entries[i].split("<link title")[1].split("/>")[0].split("href=")[1].split(" ")[0]).slice(1, -1),4,'s');
                     papers.push({ title, abstract, link, pdf, symbol });
                 }
                 
