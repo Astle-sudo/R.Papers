@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <body>
+        <h1 id="h1">P@pers</h1>
+        <div id="links">
+            <div id="ML" class="field">
+                <div class="icon" style="color: #ffffff;border-color: #e03131;background-color: #fa5252;">ML</div>
+                <div class="title" style="color: #fa5252;">Machine Learning</div>
+            </div>
+            <div id="Stats" class="field">
+                <div class="icon" style="color: #ffffff;border-color: #2f9e44;background-color: #69db76;">S</div>
+                <div class="title" style="color: #69db76;">Statistics</div>
+            </div>
+            <div id="Maths" class="field">
+                <div class="icon" style="color: #ffffff;border-color: #4dabf7;background-color: #a5dbff;">M</div>
+                <div class="title" style="color: #a5dbff;">Mathematics</div>
+            </div>
+            <div id="Finance" class="field">
+                <div class="icon" style="color: black;border-color: #1e1e1e;background-color: #e9ecef;">F</div>
+                <div class="title" style="color: #1e1e1e;">Finance</div>
+            </div>
+            <div id="Econ" class="field">
+                <div class="icon" style="color: #ffffff;border-color: #fab005;background-color: #ffd43b;">E</div>
+                <div class="title" style="color: #ffd43b;">Economics</div>
+            </div>
+            <div id="CS" class="field">
+                <div class="icon"  style="color: #ffffff;border-color: #6741d9;background-color: #9775fa;">CS</div>
+                <div class="title" style="color: #9775fa;">Computer Science</div>
+            </div>
+        </div>
+        <div id="main"></div>
+    </body>
+    <style>
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+            font-family: 'Courier New', Courier, monospace;
+            color: #343a40;
+        }
+
+        h1:hover {
+            cursor: pointer;
+        }
+
+        #links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        #main {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: first baseline;
+            flex-wrap: wrap;
+            margin: 5%;
+        }
+
+        .icon {
+            width: 1.2em;
+            height: 1.2em;
+            border-radius: 50%;
+            margin-right: 0.5em;
+            font-family: "Single Day", cursive;
+            text-align: center;
+            border-width: 2px;
+            border-style: solid;
+            padding: 1px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: row;
+            font-size: 1.2em;
+            margin: 0.5em 1.5em;
+            font-family: "Single Day", cursive;
+        }
+
+        .field:hover {
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <script>
+        function renderPapers (paperList) {
+            main.innerHTML = "";
+            for (let i = 0; i < paperList.length; i++) {
+                main.appendChild(
+                    paperCard(
+                        paperList[i]['title'], 
+                        paperList[i]['abstract'],                  
+                        paperList[i]['link'], 
+                        paperList[i]['pdf'],                    
+                        paperList[i]['symbol']
+                    )
+                )
+            }
+        }
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function flattenArray(arr) {
+            const result = [];
+            for (const element of arr) {
+                if (Array.isArray(element)) {
+                    result.push(...flattenArray(element));
+                } else {
+                    result.push(element);
+                }
+            }
+            return result;
+        }
+
+        function getMixedlist () {
+            let mixedList = shuffleArray(flattenArray(Object.values(papers)));
+            return mixedList;
+        }
+
+        function paperCard (title, abstract, pageLink, pdf, subject) {
+            let card = document.createElement('div');
+            let logo = document.createElement('div');
+            let Title = document.createElement('h2');
+            let Abstract = document.createElement('p');
+            let page = document.createElement('a');
+            let Pdf = document.createElement('a');
+
+            page.href = pageLink;
+            Pdf.href = pdf;
+
+            Title.innerHTML = title;
+            Abstract.innerHTML = abstract;
+            logo.innerHTML = subject;
+            page.innerHTML = "<i>Arxiv Page</i>";
+            Pdf.innerHTML = "<i>Pdf link</i>";
+
+            card.style.border = "3px solid black";
+            card.style.width = "22em";
+            card.style.height = "30em";
+            card.style.margin = "2%";
+            card.style.fontFamily = "Rajdhani";
+
+            switch (subject) {
+                case "M" :
+                    logo.style.borderColor = "#4dabf7";
+                    logo.style.backgroundColor = "#a5dbff";
+                    logo.style.color = "white";
+                    break;
+                case "S" :
+                    logo.style.borderColor = "#2f9e44";
+                    logo.style.backgroundColor = "#69db76";
+                    logo.style.color = "white";
+                    break;
+                case "E" :
+                    logo.style.borderColor = "#fab005";
+                    logo.style.backgroundColor = "#ffd43b";
+                    logo.style.color = "white";
+                    break;
+                case "F" :
+                    logo.style.borderColor = "#1e1e1e";
+                    logo.style.backgroundColor = "#e9ecef";
+                    logo.style.color = "black";
+                    break;
+                case "ML" :
+                    logo.style.borderColor = "#e03131";
+                    logo.style.backgroundColor = "#fa5252";
+                    logo.style.color = "white";
+                    break;
+                case "CS" :
+                    logo.style.borderColor = "#6741d9";
+                    logo.style.backgroundColor = "#9775fa";
+                    logo.style.color = "white";
+                    break;
+            }
+
+            logo.style.borderRadius = "50%";
+            logo.style.height = "2em";
+            logo.style.width = "2em";
+            logo.style.borderStyle = "solid";
+            logo.style.borderWidth = "2px";
+            logo.style.margin = "4%";
+            logo.style.textAlign = "center";
+            logo.style.fontFamily = "Single Day";
+            logo.style.lineHeight = "2em";
+
+            Title.style.textAlign = "center";
+            Title.style.marginTop = "5%";
+            Title.style.maxHeight = "20%";
+            Title.style.overflow = "scroll";
+
+            Abstract.style.alignItems = "left";
+            Abstract.style.margin = "5%";
+            Abstract.style.maxHeight = "50%";
+            Abstract.style.overflow = "scroll";
+            Abstract.style.fontWeight = "400";
+
+            page.style.margin = "5% 0 0 2%";
+            page.style.color = "black";
+
+            Pdf.style.margin = "5% 0 0 2%";
+            Pdf.style.color = "black";
+
+            card.appendChild(logo);
+            card.appendChild(Title);
+            card.appendChild(Abstract);
+            card.appendChild(page);
+            card.appendChild(Pdf);
+
+            return card;
+        }
+
+        async function getRecentPapers(subject, symbol, n) {
+            const baseUrl = "http://export.arxiv.org/api/query";
+            const oneHourAgo = new Date(Date.now() - 3600000).toISOString();
+            const params = {
+                search_query: subject,
+                start: 0,
+                max_results: n,
+                sortBy: "submittedDate",
+                sortOrder: "descending",
+            };
+
+            const url = new URL(baseUrl);
+            url.search = new URLSearchParams(params);
+            
+            try {
+                const response = await fetch(url);
+                
+                if (!response.ok) {
+                    console.error("Failed to retrieve papers from arXiv:", response.statusText);
+                    return [];
+                }
+            
+                const xmlData = await response.text();
+                const papers = [];
+
+                const entries = xmlData.split("<entry>");
+                for (let i = 1; i < entries.length; i++) {
+                    const title = entries[i].split("<title>")[1].split("</title>")[0];
+                    const abstract = entries[i].split("<summary>")[1].split("</summary>")[0];
+                    const link = entries[i].split("<link")[1].split("/>")[0].split("href=")[1].split(" ")[0];
+                    const pdf = entries[i].split("<link title")[1].split("/>")[0].split("href=")[1].split(" ")[0];
+                    papers.push({ title, abstract, link, pdf, symbol });
+                }
+                
+                return papers;
+                
+            } catch (error) {
+                console.error("Error fetching papers:", error);
+                return [];
+            }
+        }
+
+        let main = document.getElementById('main');
+        let ml = document.getElementById('ML');
+        let stats = document.getElementById('Stats');
+        let fin = document.getElementById('Finance');
+        let econ = document.getElementById('Econ');
+        let cs = document.getElementById('CS');
+        let math = document.getElementById('Maths');
+        let heading = document.getElementById('h1');
+        let papers = {};
+
+        (async () => {
+            papers['math'] = await getRecentPapers("math.AP", "M", 6);
+            papers['econ'] = await getRecentPapers("econ.TH", "E", 6);
+            papers['comp'] = await getRecentPapers("cs.CL", "CS", 6);
+            papers['stat'] = await getRecentPapers("stat.TH", "S", 6);
+            papers['mach'] = await getRecentPapers("stat.ML", "ML", 6);
+            papers['qfin'] = await getRecentPapers("q-fin.GN", "F", 6);
+
+            renderPapers(shuffleArray(flattenArray(Object.values(papers))));
+        })();
+
+        ml.addEventListener("click", () => {renderPapers(papers['mach'])});
+        econ.addEventListener("click", () => {renderPapers(papers['econ'])});
+        math.addEventListener("click", () => {renderPapers(papers['math'])});
+        cs.addEventListener("click", () => {renderPapers(papers['comp'])});
+        fin.addEventListener("click", () => {renderPapers(papers['qfin'])});
+        stats.addEventListener("click", () => {renderPapers(papers['stat'])});
+        heading.addEventListener("click", () => {renderPapers(shuffleArray(flattenArray(Object.values(papers))))});
+    </script>
+</body>
+</html>
