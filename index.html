@@ -3,11 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> P@pers </title>
+    <meta name="description" content="Most recent arxiv.org submissions, organised by topic.">
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180"  href="/card.png"> 
+    <link rel="icon" type="image/png" sizes="32x32" href="/card.png"> 
+    <link rel="icon" type="image/png" sizes="16x16"  href="/card.png"> 
+
+    <!-- Facebook Open Graph tags -->
+    <meta property="og:url" content="https://astle-sudo.github.io/reasearch-papers" />
+    <meta property="og:title" content="P@pers" />
+    <meta property="og:description" content="Most recent arxiv.org submissions, organised by topic." />
+    <meta property="og:image" content="https://astle-sudo.github.io/reasearch-papers/card.png" />
+
+
+    <!-- Twitter Card (large image card) tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@joodalooped">
+    <meta name="twitter:title" content="P@pers">
+    <meta name="twitter:description" content="Most recent arxiv.org submissions, organised by topic." />
+    <meta name="twitter:image" content="https://astle-sudo.github.io/reasearch-papers/card.png" />
+
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <title>Document</title>
+    <title>P@pers</title>
+
+    <style>
+
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+            font-family: 'Courier New', Courier, monospace;
+            color: #343a40;
+        }
+
+        h1:hover {
+            cursor: pointer;
+        }
+
+        a{
+            font-weight: 600;
+        }
+
+        #links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        #main {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: first baseline;
+            flex-wrap: wrap;
+            margin: 5%;
+        }
+
+        .card{
+            border: 3px solid black;
+            width: 22em;
+            height: 30em;
+            margin: 2%;
+            font-family: "Rajdhani";
+            padding: 1em;
+            box-sizing: border-box;
+        }
+
+        .logo{
+            border-radius: 50%;
+            height: 2em;
+            width: 2em;
+            border-style: solid;
+            border-width: 2px;
+            text-align: center;
+            font-family: Single Day;
+            line-height: 2em;
+            color: white;
+        }
+
+        .title{
+            text-align: center;
+            margin-top: 5%;
+            max-height: 20%;
+            overflow: scroll;
+        }
+
+        .abstract{
+            align-items: left;
+            max-height: 50%;
+            overflow: scroll;
+            font-weight: 400;
+        }
+
+
+        .field {
+            display: flex;
+            flex-direction: row;
+            font-size: 1.2em;
+            margin: 0.5em 1.5em;
+            font-family: "Single Day", cursive;
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        .field:hover {
+            cursor: pointer;
+            background-color: #eee;
+        }
+
+        .field .title{
+            line-height: 1.6em;
+            margin-top: 0%;
+            max-height: unset;
+        }
+
+        .icon {
+            width: 1.2em;
+            height: 1.2em;
+            border-radius: 50%;
+            margin-right: 0.5em;
+            font-family: "Single Day", cursive;
+            text-align: center;
+            border-width: 2px;
+            border-style: solid;
+            padding: 1px;
+        }
+
+    </style>
+
     <body>
         <h1 id="h1">P@pers</h1>
         <div id="links">
@@ -38,59 +169,7 @@
         </div>
         <div id="main"></div>
     </body>
-    <style>
-        h1 {
-            font-size: 2.5em;
-            text-align: center;
-            font-family: 'Courier New', Courier, monospace;
-            color: #343a40;
-        }
 
-        h1:hover {
-            cursor: pointer;
-        }
-
-        #links {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        #main {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: first baseline;
-            flex-wrap: wrap;
-            margin: 5%;
-        }
-
-        .icon {
-            width: 1.2em;
-            height: 1.2em;
-            border-radius: 50%;
-            margin-right: 0.5em;
-            font-family: "Single Day", cursive;
-            text-align: center;
-            border-width: 2px;
-            border-style: solid;
-            padding: 1px;
-        }
-
-        .field {
-            display: flex;
-            flex-direction: row;
-            font-size: 1.2em;
-            margin: 0.5em 1.5em;
-            font-family: "Single Day", cursive;
-        }
-
-        .field:hover {
-            cursor: pointer;
-        }
-
-    </style>
 </head>
 <body>
     <script>
@@ -152,30 +231,26 @@
             Title.innerHTML = title;
             Abstract.innerHTML = abstract;
             logo.innerHTML = subject;
-            page.innerHTML = "<i>Arxiv Page</i>";
-            Pdf.innerHTML = "<i>Pdf link</i>";
+            page.innerHTML = "<i>Arxiv page</i>";
+            Pdf.innerHTML = "<i>Link to PDF</i>";
 
-            card.style.border = "3px solid black";
-            card.style.width = "22em";
-            card.style.height = "30em";
-            card.style.margin = "2%";
-            card.style.fontFamily = "Rajdhani";
+            card.classList.add('card')
+            logo.classList.add('logo')
+            Title.classList.add('title')
+            Abstract.classList.add('abstract')
 
             switch (subject) {
                 case "M" :
                     logo.style.borderColor = "#4dabf7";
                     logo.style.backgroundColor = "#a5dbff";
-                    logo.style.color = "white";
                     break;
                 case "S" :
                     logo.style.borderColor = "#2f9e44";
                     logo.style.backgroundColor = "#69db76";
-                    logo.style.color = "white";
                     break;
                 case "E" :
                     logo.style.borderColor = "#fab005";
                     logo.style.backgroundColor = "#ffd43b";
-                    logo.style.color = "white";
                     break;
                 case "F" :
                     logo.style.borderColor = "#1e1e1e";
@@ -185,40 +260,17 @@
                 case "ML" :
                     logo.style.borderColor = "#e03131";
                     logo.style.backgroundColor = "#fa5252";
-                    logo.style.color = "white";
                     break;
                 case "CS" :
                     logo.style.borderColor = "#6741d9";
                     logo.style.backgroundColor = "#9775fa";
-                    logo.style.color = "white";
                     break;
             }
 
-            logo.style.borderRadius = "50%";
-            logo.style.height = "2em";
-            logo.style.width = "2em";
-            logo.style.borderStyle = "solid";
-            logo.style.borderWidth = "2px";
-            logo.style.margin = "4%";
-            logo.style.textAlign = "center";
-            logo.style.fontFamily = "Single Day";
-            logo.style.lineHeight = "2em";
-
-            Title.style.textAlign = "center";
-            Title.style.marginTop = "5%";
-            Title.style.maxHeight = "20%";
-            Title.style.overflow = "scroll";
-
-            Abstract.style.alignItems = "left";
-            Abstract.style.margin = "5%";
-            Abstract.style.maxHeight = "50%";
-            Abstract.style.overflow = "scroll";
-            Abstract.style.fontWeight = "400";
-
-            page.style.margin = "5% 0 0 2%";
+            page.style.margin = "5% 10% 0 0%";
             page.style.color = "black";
 
-            Pdf.style.margin = "5% 0 0 2%";
+            Pdf.style.margin = "5% 10% 0 0%";
             Pdf.style.color = "black";
 
             card.appendChild(logo);
