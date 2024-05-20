@@ -335,12 +335,12 @@
         let papers = {};
 
         (async () => {
-            papers['math'] = await getRecentPapers("math.LO", "M", 10);
-            papers['econ'] = await getRecentPapers("econ.GN", "E", 10);
-            papers['comp'] = await getRecentPapers("cs.DS", "CS", 10);
-            papers['stat'] = await getRecentPapers("stat.TH", "S", 10);
-            papers['mach'] = await getRecentPapers("stat.ML", "ML", 10);
-            papers['qfin'] = await getRecentPapers("q-fin.GN", "F", 10);
+            papers['math'] = await getRecentPapers("math.LO", "M", 2);
+            papers['econ'] = await getRecentPapers("econ.GN", "E", 2);
+            papers['comp'] = await getRecentPapers("cs.DS", "CS", 2);
+            papers['stat'] = await getRecentPapers("stat.TH", "S", 2);
+            papers['mach'] = await getRecentPapers("stat.ML", "ML", 2);
+            papers['qfin'] = await getRecentPapers("q-fin.GN", "F", 2);
 
             renderPapers(shuffleArray(flattenArray(Object.values(papers))));
         })();
